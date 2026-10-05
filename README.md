@@ -115,6 +115,12 @@ rocm/scripts/install_tabbyapi.sh ../tabbyAPI models
 rocm/scripts/run_tabbyapi.sh config.yml ../tabbyAPI
 ```
 
+On Fedora the build step differs: ROCm is packaged under `/usr` rather than `/opt/rocm`, and its
+GCC is newer than the distros this port was validated on. Use `rocm/scripts/build_fedora.sh --clean`
+in place of the `build.sh` line above, and see [rocm/BUILD-FEDORA.md](rocm/BUILD-FEDORA.md) for the
+packages the build needs (`python3.12-devel` is the easy one to miss) and the three
+distribution-specific fixes the script applies.
+
 The server listens on port 8096 (OpenAI-compatible `/v1/chat/completions`, streaming, tools, images).
 Authentication is enabled in the shipped configs: TabbyAPI writes the keys to `api_tokens.yml` on first
 start. Set `disable_auth: true` only if the port is not reachable from untrusted machines.
