@@ -34,5 +34,12 @@ draft_model:
   draft_mode: mtp
   draft_cache_mode: Q8
 
+sampling:
+  # Fallback sampler parameters for requests that omit them. safe_defaults is llama.cpp-style
+  # (temperature 0.8, top_k 40, top_p 0.95, min_p 0.05) and each value only applies when the
+  # request does not set it. Presets live in TabbyAPI's sampler_overrides/ folder. With no
+  # preset, omitted parameters run untruncated: temperature 1.0, top_k 0, top_p 1.0, min_p 0.
+  override_preset: safe_defaults
+
 memory:
   sysmem_recurrent_cache: 4096
