@@ -6,8 +6,11 @@ speculative-draft acceptance) at long context. Built and run on an RX 7900 XTX
 (gfx1100) serving `Qwen3.8-27B-EXL3-3.5bpw`.
 
 Results are checked in under `results/`:
-- `results/prefill-192k-vs-256k.md` — `config.yml` (DFlash2/192K) vs
-  `config.mtp-256k.yml` (MTP/256K) cold-prefill comparison.
+- `results/prefill-192k-vs-256k.md` — cold **prefill / TTFT** comparison of
+  `config.yml` (DFlash2/192K) vs `config.mtp-256k.yml` (MTP/256K). Result: a tie.
+- `results/decode-192k-vs-256k.md` — steady-state **decode / draft acceptance**
+  comparison of the same two configs. Result: DFlash2 decodes faster; MTP's edge
+  is its longer context window.
 
 ## How it measures
 

@@ -69,10 +69,17 @@ draft-agnostic (see below).
 
 ## Recommendation
 
-**B (`config.mtp-256k.yml`) is the better default on this card**: same prefill /
-TTFT, +33% usable context, less VRAM, higher draft acceptance, one fewer 27B
-model loaded. A's only conceivable edge — the separate DFlash2 draft boosting
-decode — is not demonstrated here.
+Prefill/TTFT are a tie (draft-agnostic), so **choose by workload**. The follow-up
+decode study (`decode-192k-vs-256k.md`) measured generation speed properly and
+found **A (DFlash2) decodes faster than B at every context depth**, so this
+superseded an earlier tentative "B is better by default" read. Net:
+
+- **Need > 192K tokens** → **B** (`config.mtp-256k.yml`) is the only option (and
+  uses slightly less VRAM).
+- **Within 192K and you care about decode speed / agent responsiveness** →
+  **A** (`config.yml`, DFlash2) is faster and holds up far better deep in context.
+- **Prefill-dominated (RAG, long-doc ingest, few output tokens)** → equivalent;
+  pick for context ceiling.
 
 ## Reproduce
 
